@@ -1,0 +1,68 @@
+{
+  "name": "next-starter",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "author": "Ricardo Casares <ricardocasares@gmail.com> (http://analogic.al/)",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run next:dev",
+    "tdd": "run-p next:dev test:watch",
+    "next:dev": "next",
+    "next:build": "next build",
+    "next:start": "next start",
+    "start": "npm run next:start",
+    "build": "run-s test next:build",
+    "build:ci": "run-s test:coverage next:build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "next": "^4.1.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redux": "^3.7.2",
+    "webpack-bundle-analyzer": "^2.9.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1",
+    "npm-run-all": "^4.1.1",
+    "react-test-renderer": "^16.0.0"
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "presets": "next/babel"
+      },
+      "production": {
+        "presets": "next/babel"
+      },
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "modules": "commonjs"
+            }
+          ],
+          "next/babel"
+        ]
+      }
+    }
+  },
+  "jest": {
+    "testMatch": ["**/?(*.)(spec|test).js?(x)"],
+    "coverageDirectory": ".coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  }
+}
