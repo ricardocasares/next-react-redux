@@ -1,7 +1,15 @@
-const MIN_VOTES = 10;
-const MIN_ACTIVE = 10;
+// selectors placeholder
 
-export const approved = feature => feature.votes > MIN_VOTES;
-export const popular = feature => feature.active > MIN_ACTIVE;
-export const hasVideo = feature => feature.videos.length > 0;
-export const hasImages = feature => feature.images.length > 0;
+export const selectPostCount = ({ posts }) => {
+  let text;
+  let count = posts.length;
+
+  switch (count) {
+    case 0:
+      return "No posts";
+    case 1:
+      return `One post`;
+  }
+
+  return `${count} posts`;
+};

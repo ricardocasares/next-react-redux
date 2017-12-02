@@ -1,15 +1,20 @@
-import * as type from "./types";
-import { combineReducers } from "redux";
+import { PENDING, RESOLVED, REJECTED } from "./types";
 
-const featureReducer = (state = [], action) => {
-  switch (action.type) {
-    case type.FETCH:
-      return [];
-    default:
-      return state;
-  }
+export const featureState = {
+  posts: [],
+  error: null,
+  loading: false
 };
 
-export default combineReducers({
-  featureReducer
-});
+export default (state = featureState, action) => {
+  switch (action.type) {
+    case PENDING:
+      return { ...state, loading: action.payload };
+    case REJECTED:
+      return { ...state, error: action.meta };
+    case RESOLVED:
+      return { ...state, posts: action.payload, error: null };
+  }
+
+  return state;
+};
